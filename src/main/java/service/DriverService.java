@@ -11,6 +11,7 @@ import enums.DriverStatus;
 import exception.DriverException;
 import model.Driver;
 import model.Phone;
+import rest.server.IpLog;
 
 @Dependent
 public class DriverService {
@@ -19,14 +20,14 @@ public class DriverService {
     private EntityManager em;
 
     @Transactional
-    public Driver createDriver(Driver d) throws DriverException {
+    public Driver createDriver(Driver d, IpLog ipLog) throws DriverException {
 
         List<Driver> drivers = getAllDrivers();
 
         if (drivers.contains(d)) {
             throw new DriverException(DriverStatus.EXISTS.getLabel());
         }
-
+        d.setIpLog(ipLog);
         return em.merge(d);
     }
 

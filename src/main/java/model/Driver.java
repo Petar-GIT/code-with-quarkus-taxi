@@ -3,16 +3,8 @@ package model;
 import java.util.Date;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import rest.server.IpLog;
 
 @Entity
 @NamedQueries({
@@ -39,6 +31,9 @@ public class Driver {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "driver_id")
     private Set<Phone> phones;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private IpLog ipLog;
 
     public Long getId() {
         return id;
@@ -118,4 +113,11 @@ public class Driver {
         return "Driver [id=" + id + ", ime=" + name + ", prezime=" + surname + "]";
     }
 
+    public IpLog getIpLog() {
+        return ipLog;
+    }
+
+    public void setIpLog(IpLog ipLog) {
+        this.ipLog = ipLog;
+    }
 }

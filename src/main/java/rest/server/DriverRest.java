@@ -4,6 +4,7 @@ package rest.server;
 import java.util.List;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.resteasy.reactive.RestResponse.Status;
 
 import jakarta.inject.Inject;
@@ -17,6 +18,8 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import exception.DriverException;
 import model.Driver;
+import rest.client.CountryClient;
+import rest.client.IpClient;
 import service.DriverService;
 
 @Path("/api/driver/")
@@ -24,6 +27,10 @@ public class DriverRest {
 
     @Inject
     private DriverService driverService;
+
+    @Inject
+    @RestClient
+    IpClient ipClient;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -33,7 +40,8 @@ public class DriverRest {
     public Response createDriver(Driver driver){
         Driver d = null;
         try {
-            d = driverService.createDriver(driver);
+           IpLog i = ipClient.getIp();
+           d = driverService.createDriver(driver, i);
         } catch (DriverException e) {
             return Response.status(Status.CONFLICT).entity(e.getMessage()).build();
         }

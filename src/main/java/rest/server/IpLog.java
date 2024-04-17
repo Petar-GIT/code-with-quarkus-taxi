@@ -5,6 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Entity
 
 public class IpLog {
@@ -15,6 +18,7 @@ public class IpLog {
 
     String ipString;
     String ipType;
+    Date createdDate = new Date();
 
     public IpLog(){
 
@@ -42,5 +46,13 @@ public class IpLog {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 }

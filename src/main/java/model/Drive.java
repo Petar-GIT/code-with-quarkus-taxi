@@ -1,34 +1,47 @@
 //package model;
 //
 //import java.time.LocalDateTime;
+//import java.util.HashSet;
+//import java.util.Set;
 //
-//import jakarta.persistence.Entity;
-//import jakarta.persistence.GeneratedValue;
-//import jakarta.persistence.GenerationType;
-//import jakarta.persistence.Id;
-//import jakarta.persistence.ManyToOne;
-//import jakarta.persistence.NamedQueries;
-//import jakarta.persistence.NamedQuery;
+//import jakarta.persistence.*;
 //
 //
 //@Entity
-//@NamedQueries({
-//        //
-//})
+//@Table(name = "Drive")
+////@NamedQueries({
+////
+////})
 //public class Drive {
 //
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "drive_seq")
 //    private Long id;
 //
-//    @ManyToOne
-//    private Vehicle preferredVehicle;
+//
 //
 //    private String whereFrom;
 //    private String whereTo;
 //    private LocalDateTime ETA;
 //    private String driveNumber;
 //
+//
+//
+//    @ManyToMany(cascade = { CascadeType.ALL })
+//    @JoinTable(
+//            name = "Drive_User",
+//            joinColumns = { @JoinColumn(name = "drive_id") },
+//            inverseJoinColumns = { @JoinColumn(name = "user_id") }
+//    )
+//    Set<User> users = new HashSet<>();
+//
+//    public Set<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(Set<User> users) {
+//        this.users = users;
+//    }
 //
 //    public Drive() {
 //        super();
@@ -43,13 +56,6 @@
 //        this.id = id;
 //    }
 //
-//    public Vehicle getPreferredVehicle() {
-//        return preferredVehicle;
-//    }
-//
-//    public void setPreferredVehicle(Vehicle preferredVehicle) {
-//        this.preferredVehicle = preferredVehicle;
-//    }
 //
 //    public String getWhereFrom() {
 //        return whereFrom;

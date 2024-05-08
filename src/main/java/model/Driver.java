@@ -35,6 +35,15 @@ public class Driver {
     @OneToOne(cascade = CascadeType.ALL)
     private IpLog ipLog;
 
+    @ManyToMany
+    @JoinTable(
+            name = "driver_vehicle",
+            joinColumns = @JoinColumn(name = "driver_id"),
+            inverseJoinColumns = @JoinColumn(name = "vehicle_id")
+    )
+    private Set<Vehicle> vehicles;
+
+
     public Long getId() {
         return id;
     }

@@ -1,11 +1,11 @@
 package enums;
 
-public enum DriverStatus {
-    EXISTS("Driver already exists");
+public enum VehicleStatus {
+    EXISTS("Vehicle already exists");
 
     private String label;
 
-    private DriverStatus(String label) {
+    private VehicleStatus(String label) {
         this.label = label;
     }
 

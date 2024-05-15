@@ -11,6 +11,7 @@ import enums.DriverStatus;
 import exception.DriverException;
 import model.Driver;
 import model.Phone;
+import model.Vehicle;
 import rest.server.IpLog;
 
 @Dependent

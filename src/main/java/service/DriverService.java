@@ -14,6 +14,7 @@ import model.Phone;
 import model.Vehicle;
 import rest.server.IpLog;
 
+
 @Dependent
 public class DriverService {
 
@@ -49,6 +50,7 @@ public class DriverService {
         return em.createNamedQuery(Phone.GET_ALL_FOR_DRIVER, Phone.class).setParameter("id", d.getId())
                 .getResultList();
     }
+
 
     @Transactional
     public List<Driver> getDriversByName(String name) {

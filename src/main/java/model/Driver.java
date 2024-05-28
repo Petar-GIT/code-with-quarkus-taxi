@@ -1,8 +1,9 @@
 package model;
 
-import java.util.*;
-import jakarta.persistence.*;
+import java.util.Date;
+import java.util.Set;
 
+import jakarta.persistence.*;
 import rest.server.IpLog;
 
 @Entity
@@ -34,26 +35,14 @@ public class Driver {
     @OneToOne(cascade = CascadeType.ALL)
     private IpLog ipLog;
 
-    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
-            name = "Driver_vehicle",
+            name = "driver_vehicle",
             joinColumns = @JoinColumn(name = "driver_id"),
             inverseJoinColumns = @JoinColumn(name = "vehicle_id")
     )
-    private Set<Vehicle> vehicles = new HashSet<>();
+    private Set<Vehicle> vehicles;
 
-
-    public Set<Vehicle> getVehicles() {
-        return vehicles;
-    }
-
-    public void setVehicles(Set<Vehicle> vehicles) {
-        this.vehicles = vehicles;
-    }
-
-    public Driver(){
-        super();
-    }
 
     public Long getId() {
         return id;
@@ -130,7 +119,7 @@ public class Driver {
 
     @Override
     public String toString() {
-        return "Driver [id=" + id + ", ime=" + name + "]";
+        return "Driver [id=" + id + ", ime=" + name + ", prezime=" + surname + "]";
     }
 
     public IpLog getIpLog() {

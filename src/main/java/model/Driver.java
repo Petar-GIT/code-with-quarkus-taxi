@@ -1,11 +1,8 @@
 package model;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.*;
 import jakarta.persistence.*;
+
 import rest.server.IpLog;
 
 @Entity
@@ -44,6 +41,7 @@ public class Driver {
             inverseJoinColumns = @JoinColumn(name = "vehicle_id")
     )
     private Set<Vehicle> vehicles = new HashSet<>();
+
 
     public Set<Vehicle> getVehicles() {
         return vehicles;

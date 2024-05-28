@@ -1,18 +1,19 @@
 //package model;
 //
-//import java.time.LocalDateTime;
-//import java.util.HashSet;
-//import java.util.Set;
 //
+//
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 //import jakarta.persistence.*;
 //
 //
 //@Entity
-//@Table(name = "Drive")
-////@NamedQueries({
-////
-////})
+//@NamedQueries({
+//        @NamedQuery(name = Drive.GET_ALL_DRIVES, query = "Select d from Drive d")
+//})
 //public class Drive {
+//
+//    public static final String GET_ALL_DRIVES = "getAllDrives";
+//
 //
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "drive_seq")
@@ -20,28 +21,18 @@
 //
 //
 //
+//
 //    private String whereFrom;
 //    private String whereTo;
-//    private LocalDateTime ETA;
 //    private String driveNumber;
+//    private double duration;
 //
 //
+//    @ManyToOne
+//    @JsonIgnore
+//    public Vehicle vehicle;
 //
-//    @ManyToMany(cascade = { CascadeType.ALL })
-//    @JoinTable(
-//            name = "Drive_User",
-//            joinColumns = { @JoinColumn(name = "drive_id") },
-//            inverseJoinColumns = { @JoinColumn(name = "user_id") }
-//    )
-//    Set<User> users = new HashSet<>();
-//
-//    public Set<User> getUsers() {
-//        return users;
-//    }
-//
-//    public void setUsers(Set<User> users) {
-//        this.users = users;
-//    }
+//    public String number;
 //
 //    public Drive() {
 //        super();
@@ -73,14 +64,6 @@
 //        this.whereTo = whereTo;
 //    }
 //
-//    public LocalDateTime getETA() {
-//        return ETA;
-//    }
-//
-//    public void setETA(LocalDateTime ETA) {
-//        this.ETA = ETA;
-//    }
-//
 //    public String getDriveNumber() {
 //        return driveNumber;
 //    }
@@ -89,4 +72,11 @@
 //        this.driveNumber = driveNumber;
 //    }
 //
+//    public double getDuration() {
+//        return duration;
+//    }
+//
+//    public void setDuration(double duration) {
+//        this.duration = duration;
+//    }
 //}

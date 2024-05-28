@@ -1,15 +1,9 @@
 package model;
 
 import jakarta.persistence.*;
-
 import rest.server.IpLog;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-
 import java.util.Set;
+
 
 @Entity
 @NamedQueries({
@@ -58,9 +52,9 @@ public class Vehicle {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public String getLocation() {
         return location;

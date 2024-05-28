@@ -1,6 +1,9 @@
 package rest.server;
 
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -18,9 +21,9 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import exception.DriverException;
 import model.Driver;
-import rest.client.CountryClient;
 import rest.client.IpClient;
 import service.DriverService;
+import service.FileService;
 
 @Path("/api/driver/")
 public class DriverRest {
@@ -66,6 +69,19 @@ public class DriverRest {
         return Response.ok().entity(drivers).build();
     }
 
+    @Inject
+    private FileService fileService;
 
+    @POST
+    @Path("/processFile")
+    @Consumes(MediaType.TEXT_PLAIN)
+    public Response processFile(InputStream inputStream) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+            fileService.processFile(br);
+            return Response.ok("File processing initiated.").build();
+        } catch (Exception e) {
+            return Response.serverError().entity("Error processing file: " + e.getMessage()).build();
+        }
+    }
 
 }

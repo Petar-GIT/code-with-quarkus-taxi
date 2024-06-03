@@ -81,7 +81,7 @@ public class DriverRest {
         try {
             Path tempFile = Files.createTempFile("upload", ".tmp");
             Files.copy(inputStream, tempFile, StandardCopyOption.REPLACE_EXISTING);
-            String filePath = "C:\\Users\\Korisnik\\Desktop\\img quarkus\\fileName.png";
+            String filePath = "C:\\Users\\Korisnik\\Desktop\\img quarkus";
             fileService.processFile(tempFile, filePath);
             return Response.ok("File processing initiated.").build();
         } catch (Exception e) {

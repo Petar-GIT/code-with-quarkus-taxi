@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import org.jboss.logging.Logger;
@@ -16,18 +18,19 @@ public class FileService {
 
     private static final Logger LOG = Logger.getLogger(FileService.class.getName());
 
-    public void processFile(Path sourcePath, String targetPath) throws IOException {
-
+    public void processFile(Path sourcePath, String targetDirectory) throws IOException {
         LOG.info("processFile() begin");
 
         try {
-            Files.copy(sourcePath, Paths.get(targetPath), StandardCopyOption.REPLACE_EXISTING);
+            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+            String originalFileName = sourcePath.getFileName().toString();
+            String newFileName = originalFileName.substring(0, originalFileName.lastIndexOf(".")) + "_" + timestamp + ".png";
+            Path targetPath = Paths.get(targetDirectory, newFileName);
+            Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             LOG.error("Error", e);
         }
 
         LOG.info("processFile() end");
-
     }
-
 }

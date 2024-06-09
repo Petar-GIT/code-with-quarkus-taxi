@@ -16,6 +16,8 @@ public class IpLog {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ipLog_seq")
     private Long id;
 
+
+
     String ipString;
     String ipType;
     Date createdDate = new Date();

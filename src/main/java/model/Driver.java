@@ -28,6 +28,8 @@ public class Driver {
 
     private String jmbg;
 
+    private String fileName;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "driver_id")
     private Set<Phone> phones;
@@ -90,6 +92,14 @@ public class Driver {
 
     public void setJmbg(String jmbg) {
         this.jmbg = jmbg;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     @Override
